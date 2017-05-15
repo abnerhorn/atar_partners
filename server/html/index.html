@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>ATAR partners</title>
+    <script type="text/javascript">
+
+    function show(){
+      navigator.geolocation.getCurrentPosition(function(location) {
+        var lat = (location.coords.latitude);
+        var lng = (location.coords.longitude);
+        window.location = `/show/${lat}/${lng}`;
+      });
+    }
+
+    </script>
+  </head>
+  <body>
+    <button onclick="show()">Hello</button>
+  </body>
+</html>
