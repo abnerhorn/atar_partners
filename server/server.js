@@ -20,7 +20,13 @@ app.get('/upload',(req,res)=>{
 })
 
 app.post('/upload',(req,res) => {
-  res.send(req.body);
+
+  var place = new Place(req.body);
+  place.save().then((doc)=>{
+    res.send(doc);
+  }).catch((e)=>{
+    res.send(e);
+  })
 })
 
 app.get('/show/:lat/:lng',(req,res) => {
