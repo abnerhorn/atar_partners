@@ -30,11 +30,7 @@ app.post('/upload',(req,res) => {
     place_id : req.body.place_id
   });
 
-  place.save().then((doc)=>{
-    res.send(doc);
-  }).catch((e)=>{
-    res.send(e);
-  })
+  res.send(place);
 })
 
 app.get('/show/:lat/:lng',(req,res) => {
