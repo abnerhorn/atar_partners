@@ -21,8 +21,18 @@ app.get('/upload',(req,res)=>{
 
 app.post('/upload',(req,res) => {
 
-  var place = new Place(req.body);
-  place.save().then((doc)=>{
+  var place = new Place({
+    name : req.body.name,
+    lat : req.body.lat,
+    lng : req.body.lng,
+    address : req.body.address,
+    rating : req.body.rating,
+    place_id : req.body.place_id
+  });
+
+  Place.remove({}).then(() =>{
+    return place.save()
+  }).then((doc)=>{
     res.send(doc);
   }).catch((e)=>{
     res.send(e);
