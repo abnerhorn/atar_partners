@@ -1,16 +1,26 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 
-var {mongoose} = require('./../db/mongoose');
-var {Place} = require('./../models/place');
+var {mongoose} = require('./db/mongoose');
+var {Place} = require('./models/place');
 
-var port = process.env.PORT || 4747;
+const port = process.env.PORT || 4747;
 
 
 var app = express();
+app.use(bodyParser.json());
 
 app.get('/',(req,res) => {
   res.sendFile('./html/index.html', {root : __dirname});
 
+})
+
+app.get('/upload',(req,res)=>{
+  res.send("Works")
+})
+
+app.post('/upload',(req,res) => {
+  res.send(req.body);
 })
 
 app.get('/show/:lat/:lng',(req,res) => {
@@ -44,6 +54,7 @@ app.get('/show/:lat/:lng',(req,res) => {
     res.status(400).send(e);
   })
 })
+
 
 app.listen(port,()=>{
   console.log(`Connection started in port ${port}`);
