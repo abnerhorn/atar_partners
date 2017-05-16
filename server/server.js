@@ -30,9 +30,7 @@ app.post('/upload',(req,res) => {
     place_id : req.body.place_id
   });
 
-  Place.remove({}).then(() =>{
-    return place.save()
-  }).then((doc)=>{
+  place.save().then((doc)=>{
     res.send(doc);
   }).catch((e)=>{
     res.send(e);
